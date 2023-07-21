@@ -116,17 +116,13 @@ class HomeController extends GetxController {
   }
   Future<void> sendLocationInfo() async {
     if (_currentLocation == null) {
-      // Handle the case when the location is not available
       return;
     }
-
-    // Prepare the payload
     Map<String, dynamic> payload = {
       'latitude': _currentLocation!.latitude.toString(),
       'longitude': _currentLocation!.longitude.toString(),
     };
 
-    // Replace 'YOUR_API_URL' with your actual API endpoint
     String apiUrl = 'http://freshexport.com.au/api/';
 
     print(_currentLocation!.latitude);
@@ -138,16 +134,13 @@ class HomeController extends GetxController {
       );
 
       if (response.statusCode == 200) {
-        // Successful API call, handle the response if needed
         print('Location sent successfully.');
         showSussesDialog('Good job!', 'Location info sent successfully.');
       } else {
-        // Handle error
         print('Error sending location. Status code: ${response.statusCode}');
         showSussesDialog('Oops', 'Something went wrong.');
       }
     } catch (e) {
-      // Handle other errors
       print('Error sending location: $e');
       showSussesDialog('Oops', 'Error sending location: $e');
     }
